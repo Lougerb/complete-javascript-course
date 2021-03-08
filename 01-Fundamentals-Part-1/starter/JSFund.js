@@ -307,9 +307,41 @@ else if ( aveDolphinScore < 100 && aveKoalaScrore >=100){
     console.log(`Koala wins! and Dolphin has a score lower than 100`);
 }
 
-*/
 
-const day="saturday";
+//Switch statement-----------------------------------------------------
+
+const day="thursday";
+
+switch(day){
+    case "monday":
+        console.log('Plan course structure');
+        console.log(`Go to coding meetup`);
+    break; //to clear up past result
+
+    case "tuesday":
+        console.log(`Prepare theory videos`);
+    break;
+
+    case "wednesday":
+    case "thursday":
+        console.log(`Write code examples`);
+    break;
+    case "friday":
+        console.log(`Record Videos`);
+    break;
+
+    case "saturday":
+    case "sunday":
+        console.log(`Pahinga tayo`);
+    break;
+
+    default: //same with else statement
+        console.log(`enter a valid day`);
+}
+
+
+
+//If-else is same logic with switch statement
 
 if (day==="monday"){
     console.log('Plan course structure');
@@ -332,3 +364,10 @@ else if (day==="saturday"||day==="sunday"){
 else{
     console.log(`enter a valid day`);
 }
+*/
+
+const bill = 49;
+const tip = 0.15;
+const totalVal= (300 >= bill)&&(bill >= 50) ? `The bill was ${bill}, the tip was ${bill*tip} and the  total value is ${bill+(bill*tip)}` :'Invalid Bill';
+
+console.log(totalVal);
