@@ -169,7 +169,6 @@ if (year === 2001) {  //compared to a Number
 else {
     console.log(`Give me a number`);
 }
-*/
 //To fix this, try converting a string to number
 
 let date = "23";
@@ -184,3 +183,152 @@ else {
 }
 
 
+
+//Boolean/Logical operators----------------------------------------------
+// using && || !
+
+// && -if all condition are true, the result will be true
+// but if one or all condition is false, the result will be false
+
+// || - if all condition are false, the result will be false
+// but if one or all condition are true, the result will be true
+
+// ! - using this will make condition the opposite
+
+const hasDriverLicense = true;
+const hasGoodVision = true;
+const noHealthProblem = false;
+const noMoney = false;
+
+    // console.log(hasDriverLicense && hasGoodVision);
+    // console.log(hasDriverLicense && noHealthProblem);
+    // console.log (hasDriverLicense || hasGoodVision);
+    // console.log (noHealthProblem || noMoney);
+    // console.log(!noHealthProblem);
+
+if((hasDriverLicense&&hasGoodVision) && noHealthProblem){
+    console.log(`You can drive now!`);
+}
+
+
+else{
+    console.log(`Take care of your health first!`);
+}
+
+
+//MyOwn Assignment
+//Job Skill requirement
+const skillHTML=true,
+skillCSS=true,
+skillJS=false,
+skillReactJS=true,
+skillSASS=true,
+skillPHP=true,
+skillMySQL=true;
+
+if(skillHTML&&skillCSS&&skillJS&&skillReactJS&&skillSASS&&skillPHP&&skillMySQL){
+    console.log(`You are hired!`);
+}
+else if(skillJS===false){
+    console.log(`Hired, but study JS`);
+}
+
+
+const language="english",
+pop=50,
+island=false;
+
+if ( (language==="english") && (pop<=50) && (!island) ){
+    console.log(`Sara can live this country!`);
+}
+else{
+    console.log(`Sara can't live here`);
+}
+
+
+
+//Assignment
+// There are two gymnastics teams, Dolphins and Koalas. They compete against each
+// other 3 times. The winner with the highest average score wins a trophy!
+// Your tasks:
+// 1. Calculate the average score for each team, using the test data below
+// 2. Compare the team's average scores to determine the winner of the competition,
+// and print it to the console. Don't forget that there can be a draw, so test for that
+// as well (draw means they have the same average score)
+// 3. Bonus 1: Include a requirement for a minimum score of 100. With this rule, a
+// team only wins if it has a higher score than the other team, and the same time a
+// score of at least 100 points. Hint: Use a logical operator to test for minimum
+// score, as well as multiple else-if blocks �
+// 4. Bonus 2: Minimum score also applies to a draw! So a draw only happens when
+// both teams have the same score and both have a score greater or equal 100
+// points. Otherwise, no team wins the trophy
+
+//My Challenge is also to specifically tell if One of the team's score
+//got the highest or lowest than 100 points
+// MY BEST CHALLENGE SO FAR
+
+const aveDolphinScore=100;
+const aveKoalaScrore=100;
+
+
+if( aveDolphinScore<100 && aveKoalaScrore <100 ){
+
+    if(aveDolphinScore > aveKoalaScrore){
+        console.log(`Both scores lower than 100, but Dolphin HIGHER!`);
+    }
+
+    else if (aveKoalaScrore > aveDolphinScore){
+        console.log(`Both scores lower than 100, but Koala is HIGHER!`);
+    }
+
+    else{
+        console.log(`Both draw and scores lower than 100, LOSERS!`);
+    }
+}
+
+else if( aveDolphinScore >= 100 && aveKoalaScrore >= 100 ){
+
+    if( aveDolphinScore > aveKoalaScrore ){
+            console.log(`Dolphin wins!`);
+    }
+    else if( aveDolphinScore < aveKoalaScrore ){
+        console.log(`Koala wins!`);
+    }
+    else {
+        console.log(`Both Draw, both higher than 100, BOTH WON!`);
+    }
+}
+
+else if( aveDolphinScore >= 100 && aveKoalaScrore < 100){
+    console.log(`Dolphin wins! and Koala has a score lower than 100`);
+}
+
+else if ( aveDolphinScore < 100 && aveKoalaScrore >=100){
+    console.log(`Koala wins! and Dolphin has a score lower than 100`);
+}
+
+*/
+
+const day="saturday";
+
+if (day==="monday"){
+    console.log('Plan course structure');
+    console.log(`Go to coding meetup`);
+}
+else if (day==="tuesday"){
+    console.log(`Prepare theory videos`);
+}
+else if (day==="wednesday"||day==="thursday"){
+
+    console.log(`Write code examples`);
+}
+
+else if (day==="friday"){
+    console.log(`Record Videos`);
+}
+else if (day==="saturday"||day==="sunday"){
+    console.log(`Pahinga tayo`);
+}
+else{
+    console.log(`enter a valid day`);
+}
