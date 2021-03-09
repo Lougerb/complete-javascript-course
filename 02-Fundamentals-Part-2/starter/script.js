@@ -212,7 +212,6 @@ else{
     console.log(`You dont have a friend like that`);
 }
 
-*/
 
 
 function calTip(theirBill){
@@ -242,5 +241,35 @@ const bill=[125, 555, 44];
 
 console.log(myBillTip(bill[0],bill[1],bill[2]));
 
+*/
 
+//Objects-----------------------------------------
 
+const gerald ={
+    firstName: "Louein",
+    lastName:"Baling",
+    age:24,
+    job: "unemployed",
+    friend1: "Jan",
+    friend2: "Mar",
+    friend3: "Feb"
+};
+
+//retrieving data from objects
+
+// using dot notation
+console.log(gerald.lastName); //PROPERTY ONLY
+//using bracket notation
+console.log(gerald["lastName"]); //can put expression
+
+// const knowMe = prompt(`Pick: firstName, lastName, age or job`);
+
+// if(gerald[knowMe]){
+//     console.log( gerald[knowMe] ); //if User pick from the properties
+// }
+// else{
+//  console.log(`You dont want to know me`); //if User not pick from the properties
+// }
+gerald.location="Manila";
+gerald["hangout"]="McDo"
+console.log(`${gerald.firstName} has 3 friends called ${gerald["friend1"]}, ${gerald.friend2} and ${gerald["friend3"]}. They are hanging out in ${gerald.location} every Sunday.`);
