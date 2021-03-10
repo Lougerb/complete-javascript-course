@@ -241,7 +241,7 @@ const bill=[125, 555, 44];
 
 console.log(myBillTip(bill[0],bill[1],bill[2]));
 
-*/
+
 
 //Objects-----------------------------------------
 
@@ -252,7 +252,12 @@ const gerald ={
     job: "unemployed",
     friend1: "Jan",
     friend2: "Mar",
-    friend3: "Feb"
+    friend3: "Feb",
+
+    calcBYear: function(){ //can also do function
+        console.log(this);
+        return 2021-this.age;
+    }
 };
 
 //retrieving data from objects
@@ -270,6 +275,121 @@ console.log(gerald["lastName"]); //can put expression
 // else{
 //  console.log(`You dont want to know me`); //if User not pick from the properties
 // }
+//can also add some properties on the object
 gerald.location="Manila";
 gerald["hangout"]="McDo"
 console.log(`${gerald.firstName} has 3 friends called ${gerald["friend1"]}, ${gerald.friend2} and ${gerald["friend3"]}. They are hanging out in ${gerald.location} every Sunday.`);
+
+
+const gerald ={
+    firstName: "Louein",
+    lastName:"Baling",
+    age:24,
+    job: "unemployed",
+    friend1: "Jan",
+    friend2: "Mar",
+    friend3: "Feb",
+
+    calcBYear: function(){ //can also do function
+        
+        console.log(this); //"this" is calling the whole array
+
+        return 2021-this.age;
+    }
+};
+
+console.log(gerald.calcBYear()); //will call the function from the object's property
+
+//Assignment
+//Create your own method with array and function
+
+const lougerInfo = {
+
+    fName: "Gerald",
+    lName: "Dela Cruz",
+    bYear: 1997,
+    bPlace: "Makati",
+    schools: ["PCS","Mapua","Udemy"],
+    hasJob: true,
+    job: "Front End Developer",
+
+    calcAge: function(){  //this is Object Method
+
+        this.age = 2021-this.bYear;  // "this" can only use if INSIDE the object's method, s
+        return this.age;            // so you cannot use the object's name ex. instead of lougerInfo, use "this"
+
+    },
+
+    getsummary: function(){
+
+        const myAge=this.calcAge();
+
+        return `${this.fName} is ${this.calcAge()} years old born in ${this.bPlace}, studied in ${this.schools.length} schools ${this.schools[0]}, ${this.schools[1]}, and ${this.schools[2]}. He ${this.hasJob===true ? "has" : "don't have"} a job.`;
+
+    }
+};
+
+console.log(lougerInfo.getsummary());
+
+
+// console.log(lougerInfo.calcAge()); 
+//to get ,age result, you have to call function first .calcAge
+// console.log(lougerInfo.age);
+
+
+// console.log(`${lougerInfo.fName} is ${lougerInfo.age} years old born in ${lougerInfo.bPlace}, studied in ${lougerInfo.schools.length} schools ${lougerInfo.schools[0]}, ${lougerInfo.schools[1]}, and ${lougerInfo.schools[2]}. He ${lougerInfo.hasJob===true ? "has" : "don't have"} a job.`);
+
+
+
+    // ternary operator
+    // Syntax
+
+    // condition ? exprIfTrue : exprIfFalse
+
+    // example:
+
+    // const temparature="Hot";
+
+
+    // if(temperature === "Hot") {
+    //     console.log(`I sweat`);
+    // }
+    // else{
+    //     console.log(`I get cold`);
+    // }
+
+    // Using Ternary Operator
+
+    // const tempDesc = (temperature === "Hot") ? "I sweat" : "I get cold";
+
+    // console.log(tempDesc);
+
+*/
+
+
+const markP = {
+    fullName: "Mark Miller",
+    mass: 78,
+    height: 1.69,
+
+    calcBMI: function(){
+        
+        return this.mass/(this.height**2);
+
+    }
+};
+
+const johnP = {
+    fullName: "John Smith",
+    mass: 92,
+    height: 1.95,
+
+    calcBMI: function(){
+        
+        return this.mass/(this.height**2);
+
+    }
+}
+
+const winner = (markP.calcBMI()>johnP.calcBMI()) ? `${markP.fullName} has the higher BMI of ${markP.calcBMI()} than ${johnP.fullName}'s BMI of ${johnP.calcBMI()}`:`${johnP.fullName} has the higher BMI of ${johnP.calcBMI()} than ${markP.fullName}'s BMI of ${markP.calcBMI()}`
+console.log(winner);
