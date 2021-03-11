@@ -364,7 +364,7 @@ console.log(lougerInfo.getsummary());
 
     // console.log(tempDesc);
 
-*/
+
 
 
 const markP = {
@@ -393,3 +393,332 @@ const johnP = {
 
 const winner = (markP.calcBMI()>johnP.calcBMI()) ? `${markP.fullName} has the higher BMI of ${markP.calcBMI()} than ${johnP.fullName}'s BMI of ${johnP.calcBMI()}`:`${johnP.fullName} has the higher BMI of ${johnP.calcBMI()} than ${markP.fullName}'s BMI of ${markP.calcBMI()}`
 console.log(winner);
+
+
+
+//TAKE 2-----------------------------------------------
+
+const markBMI={
+    wName: "Markiplier",
+    mass: 78,
+    height: 1.69,
+    
+    calcBMI: function (){
+        this.hisBMI = this.mass/(this.height**2);
+        return this.hisBMI;
+    }
+};
+
+const johnBMI={
+    wName: "Johnsepticeye",
+    mass: 92,
+    height: 1.95,
+    
+    calcBMI: function (){
+        this.hisBMI = this.mass/(this.height**2);
+        return this.hisBMI;
+    }
+};
+
+// you NEED to call the calcBMI Function FIRST to able to call .hisBMI on the next line
+
+console.log(`Final result:`)
+console.log(`${markBMI.wName}'s BMI is ${markBMI.calcBMI()}`)
+console.log(`${johnBMI.wName}'s BMI is ${johnBMI.calcBMI()}`)
+
+
+if (markBMI.hisBMI > johnBMI.hisBMI){
+    console.log(`${markBMI.wName} has the highes BMI of ${markBMI.hisBMI} than ${johnBMI.wName}'s BMI of ${johnBMI.hisBMI}`);
+}
+
+else if (johnBMI.hisBMI > markBMI.hisBMI){
+    console.log(`${johnBMI.wName} has the highest BMI of ${johnBMI.hisBMI} than ${markBMI.wName}'s BMI of ${markBMI.hisBMI}`)
+}
+
+else {
+    console.log(`Both ${markBMI.wName} and ${johnBMI.wName} has the same BMI result of ${markBMI.hisBMI}`);
+}
+
+
+//FOR LOOP----------------------------------------
+
+//simple example
+
+//rep=1 - means it will start the count of 1
+//rep<=10 - is a boolean, it will stop print if it got equal to 10
+//rep++ - the value of rep will increase by 1
+//rep++ - is also short for rep=rep+1
+
+
+// for (let rep=1 ; rep <=10; rep++){
+//     console.log(`Repitition of ${rep}`);
+// }
+
+
+
+const gerald =[
+    "Louein",
+    "Baling",
+    24,
+    1997,
+    "Front End developer",
+    ["PCS", "Mapua", "Udemy"]
+
+];
+
+const newArray = []; //empty array for Filling array
+
+// for (let i=0 ; i < gerald.length; i++){
+
+//     console.log(gerald[i]);
+
+//     //Filling an array
+//     newArray[i]=typeof gerald[i];
+
+// }
+//console.log(newArray); //will get a value from 'for loop''s filling
+
+//challenge
+//calculate the age from array using loops
+
+const bYear=[ 1957, 1997, 1989, 1999];
+const bAge=[];
+
+for (let i=0 ; i < bYear.length ; i++){
+
+    //bAge[i]=2021-bYear[i];
+    bAge.push(2021-bYear[i]);
+
+}
+
+//console.log(bAge);
+
+*/
+
+//new Challenge
+//calculate the total tips from the bill using array
+//if bill is less than 300 and over 50, their tip is 15%
+//else, their tip is 20%
+
+// const myBill=[20, 150, 301]
+// const totalBilTips=[];
+// const theirTips=[];
+
+// for (let i=0 ; i<myBill.length ; i++){
+
+//     const theirTip15=myBill[i]*0.15;
+//     const theirTips20=myBill[i]*0.2;
+    
+//     if(myBill[i]<300 && myBill[i]>50){
+
+//         theirTips.push(theirTip15);
+//         totalBilTips.push(myBill[i]+theirTip15);
+
+//     }
+
+//     else{
+//         theirTips.push(theirTips20);
+//         totalBilTips.push(myBill[i]+theirTips20);
+//     }
+    
+// }
+// console.log(theirTips);
+// console.log(totalBilTips);
+
+
+
+/** 
+//continue and break
+
+
+console.log(`-----STRING ONLY-----`)
+for( let i=0 ; i<gerald.length ; i++){
+
+    //this expression is for picking a STRING ONLY
+    //if type of gerald[i] is not a string then continue
+    
+    if (typeof gerald[i] !== "string") continue;
+
+    //this will skip everything but string
+
+    console.log(gerald[i]);
+}
+
+console.log(`-----BREAK ON NUMBER-----`)
+
+for( let i=0 ; i<gerald.length ; i++){
+
+    //this expression is when a loop detect a number or certain condition, it will stop there
+    //if typeof gerald[i] is equal to number, then break
+    
+    if (typeof gerald[i] === "number") break;
+
+    //loop will stop when a number is found and it will not output the number
+
+    console.log(gerald[i]);
+}
+
+//looping backwards
+
+const gerald =[
+    "Louein",
+    "Baling",
+    24,
+    1997,
+    "Front End developer",
+    ["PCS", "Mapua", "Udemy"]
+
+];
+
+    //always .length-1
+    //i increament will be --
+
+for (let i=gerald.length-1 ; i>=0 ; i-- ){
+
+    console.log(gerald[i]);
+}
+
+//loop within a loop
+
+// for (let exercise = 1; exercise<=4; exercise++){
+//     console.log(`---Exercise number ${exercise}---`);
+
+//     for(let rep=1 ; rep<=10; rep++){
+//         console.log(`Huff ${rep}`);
+//     }
+// }
+
+//triangle
+// for(let i = 1; i<=6; i++){
+
+//     for(let j = 1; j<=i; j++){
+//         console.log("*")
+//     }
+//     console.log(" ");
+// }
+
+
+
+
+//LOOP CHALLENGE!
+//finding a specific value
+
+const findThis="Front End developer";
+
+// for(let i=0 ; i<gerald.length ; i++ ){
+
+//     let result=gerald[i];
+
+//     if (result !== findThis){
+        
+//         console.log(`Can't find ${findThis}`);
+        
+//     }
+
+//     else {
+        
+//         console.log(`we found! ${findThis}`);
+        
+        
+//     }
+
+//}
+
+//While Loop-----------------------------
+
+let rep=1;
+while(rep<=10){
+    console.log(`Lifting rep ${rep}`)
+    rep++;
+}
+
+
+
+const myBill=[20, 150, 301]
+const totalBilTips=[];
+const theirTips=[];
+
+function calTip(b){
+    if (b<300 && 50<b)
+    {
+        return b*0.15;
+    }
+    else{
+        return b*0.2;
+    }
+}
+
+function calcToltalBT(bt){
+
+    return bt+calTip(bt);
+
+}
+
+
+for (let i=0 ; i<myBill.length ; i++){
+
+    theirTips.push(calTip(myBill[i]));
+    totalBilTips.push(calcToltalBT(myBill[i]));
+    
+}
+
+
+
+
+function calcAvgOT(arr){
+
+let sum=0;
+
+    for(let i = 0; i < arr.length; i++){
+        sum = sum + arr[i];
+    }
+
+    return sum/arr.length;
+}
+
+console.log(myBill);
+console.log(theirTips);
+console.log(totalBilTips);
+console.log(calcAvgOT(totalBilTips));
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+const gerald =[
+    "Louein",
+    "Baling",
+    24,
+    1997,
+    "Front End developer",
+    ["PCS", "Mapua", "Udemy"],
+    88
+
+];
+
+
+for( let i=0 ; i<gerald.length ; i++){
+
+    //this expression is for picking a STRING ONLY
+    //if type of gerald[i] is not a string then continue
+    
+    if (typeof gerald[i] !== "number" && typeof gerald[i] !=="object" ) continue;
+
+    //this will skip everything but string
+
+    console.log(gerald[i]);
+}
+* */
