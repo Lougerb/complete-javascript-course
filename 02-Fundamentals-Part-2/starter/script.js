@@ -630,77 +630,63 @@ while(rep<=10){
     rep++;
 }
 
+*/
 
+const myBill = [20, 150, 301];
+const totalBilTips = [];
+const theirTips = [];
 
-const myBill=[20, 150, 301]
-const totalBilTips=[];
-const theirTips=[];
-
-function calTip(b){
-    if (b<300 && 50<b)
-    {
-        return b*0.15;
-    }
-    else{
-        return b*0.2;
-    }
+function calTip(b) {
+  if (b < 300 && 50 < b) {
+    return b * 0.15;
+  } else {
+    return b * 0.2;
+  }
 }
 
-function calcToltalBT(bt){
-
-    return bt+calTip(bt);
-
+function calcToltalBT(bt) {
+  return bt + calTip(bt);
 }
 
-
-for (let i=0 ; i<myBill.length ; i++){
-
-    theirTips.push(calTip(myBill[i]));
-    totalBilTips.push(calcToltalBT(myBill[i]));
-    
+for (let i = 0; i < myBill.length; i++) {
+  theirTips.push(calTip(myBill[i]));
+  totalBilTips.push(calcToltalBT(myBill[i]));
 }
 
+function calcAvgOT(arr) {
+  let sum = 0;
 
+  for (let i = 0; i < arr.length; i++) {
+    sum = sum + arr[i];
+  }
 
-
-function calcAvgOT(arr){
-
-let sum=0;
-
-    for(let i = 0; i < arr.length; i++){
-        sum = sum + arr[i];
-    }
-
-    return sum/arr.length;
+  return sum / arr.length;
 }
 
 console.log(myBill);
 console.log(theirTips);
 console.log(totalBilTips);
 console.log(calcAvgOT(totalBilTips));
-*/
 
 /*
-const gerald =[
-    "Louein",
-    "Baling",
-    24,
-    1997,
-    "Front End developer",
-    ["PCS", "Mapua", "Udemy"],
-    88
-
+const gerald = [
+  "Louein",
+  "Baling",
+  24,
+  1997,
+  "Front End developer",
+  ["PCS", "Mapua", "Udemy"],
+  88,
 ];
-
 
 for (let i = 0; i < gerald.length; i++) {
   //this expression is for picking a STRING ONLY
   //if type of gerald[i] is not a string then continue
 
-  if (typeof gerald[i] !== "number" && typeof gerald[i] !== "object") continue;
+  if (typeof gerald[i] !== "string" && typeof gerald[i] !== "object") continue;
 
   //this will skip everything but string
 
   console.log(gerald[i]);
 }
-* */
+*/
