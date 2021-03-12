@@ -508,7 +508,7 @@ for (let i=0 ; i < bYear.length ; i++){
 
 //     const theirTip15=myBill[i]*0.15;
 //     const theirTips20=myBill[i]*0.2;
-    
+
 //     if(myBill[i]<300 && myBill[i]>50){
 
 //         theirTips.push(theirTip15);
@@ -520,12 +520,10 @@ for (let i=0 ; i < bYear.length ; i++){
 //         theirTips.push(theirTips20);
 //         totalBilTips.push(myBill[i]+theirTips20);
 //     }
-    
+
 // }
 // console.log(theirTips);
 // console.log(totalBilTips);
-
-
 
 /** 
 //continue and break
@@ -682,21 +680,6 @@ console.log(totalBilTips);
 console.log(calcAvgOT(totalBilTips));
 */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
 const gerald =[
     "Louein",
@@ -710,15 +693,14 @@ const gerald =[
 ];
 
 
-for( let i=0 ; i<gerald.length ; i++){
+for (let i = 0; i < gerald.length; i++) {
+  //this expression is for picking a STRING ONLY
+  //if type of gerald[i] is not a string then continue
 
-    //this expression is for picking a STRING ONLY
-    //if type of gerald[i] is not a string then continue
-    
-    if (typeof gerald[i] !== "number" && typeof gerald[i] !=="object" ) continue;
+  if (typeof gerald[i] !== "number" && typeof gerald[i] !== "object") continue;
 
-    //this will skip everything but string
+  //this will skip everything but string
 
-    console.log(gerald[i]);
+  console.log(gerald[i]);
 }
 * */
