@@ -38,6 +38,7 @@ document.querySelector(".check").addEventListener("click", function btnClick() {
   if (getInput === randomNum) {
     document.querySelector(".message").textContent = "WIN WIN WIN";
     document.querySelector(".score").textContent = score += 1;
+    document.querySelector("body").style.backgroundColor = "green";
 
     if (hScore < score) {
       let hScore = score;
@@ -47,10 +48,17 @@ document.querySelector(".check").addEventListener("click", function btnClick() {
   if (getInput > randomNum) {
     document.querySelector(".message").textContent = "too HIGH!";
     document.querySelector(".score").textContent = score -= 1;
+
+    document.querySelector("body").style.backgroundColor = "red";
   }
   if (getInput < randomNum) {
     document.querySelector(".message").textContent = "too LOW!";
     document.querySelector(".score").textContent = score -= 1;
+    document.querySelector("body").style.backgroundColor = "yellow";
+    document.querySelector(".number").style.color = "black";
+    document.querySelector("main").style.color = "black";
+    document.querySelector("header").style.color = "black";
+    document.querySelector(".guess").style.color = "black";
   }
   console.log(getInput);
 });
