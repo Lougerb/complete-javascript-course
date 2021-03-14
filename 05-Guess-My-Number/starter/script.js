@@ -9,8 +9,8 @@ document.querySelector(".score").textContent = 20;
 document.querySelector(".guess").value;
 */
 
-let randomNum = 15;
-let score = 20;
+let randomNum = Math.trunc(Math.random() * 20) + 1;
+let score = Number((document.querySelector(".score").textContent = 20));
 let hScore = 0;
 
 // function btnClick(userInput) {
@@ -44,13 +44,21 @@ document.querySelector(".check").addEventListener("click", function btnClick() {
       let hScore = score;
       document.querySelector(".highscore").textContent = hScore;
     }
+
+    setTimeout(function () {
+      randomNum = Math.trunc(Math.random() * 20) + 1;
+    }, 500);
   }
+
+  //if input is HIGHER!
   if (getInput > randomNum) {
     document.querySelector(".message").textContent = "too HIGH!";
     document.querySelector(".score").textContent = score -= 1;
 
     document.querySelector("body").style.backgroundColor = "red";
   }
+
+  //if Input is LOWER!
   if (getInput < randomNum) {
     document.querySelector(".message").textContent = "too LOW!";
     document.querySelector(".score").textContent = score -= 1;
@@ -60,5 +68,18 @@ document.querySelector(".check").addEventListener("click", function btnClick() {
     document.querySelector("header").style.color = "black";
     document.querySelector(".guess").style.color = "black";
   }
-  console.log(getInput);
 });
+
+document
+  .querySelector(".again")
+  .addEventListener("click", function againClick() {
+    randomNum = Math.trunc(Math.random() * 20) + 1;
+    document.querySelector(".message").textContent = "Start guessing...";
+    document.querySelector(".score").textContent = "20";
+    document.querySelector(".highscore").textContent = "0";
+    document.querySelector("body").style.backgroundColor = "#222";
+    document.querySelector("main").style.color = "#eee";
+    document.querySelector("header").style.color = "#eee";
+    document.querySelector(".guess").style.color = "#eee";
+    document.querySelector(".guess").value = "";
+  });
