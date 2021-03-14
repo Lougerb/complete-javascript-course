@@ -1,53 +1,5 @@
 "use strict";
 
-// let a = 0;
-/** 
-document
-  .querySelector(".btnPlus")
-  .addEventListener("click", function calPlus() {
-    //convert's entered value to number
-    let b = Number(document.querySelector(".numBox").value);
-
-    //get and store b's number then add to 0
-    a += b;
-    return (document.querySelector(".numBox").value = a);
-  });
-  
-
-document
-  .querySelector(".btnMinus")
-  .addEventListener("click", function calMinus() {
-    //convert's entered value to number
-    let b = Number(document.querySelector(".numBox").value);
-
-    //get and store b's number then add to 0
-    a -= b;
-    return (document.querySelector(".numBox").value = a);
-  });
-*/
-
-// document
-//   .querySelector(".btnEqual")
-//   .addEventListener("click", function calEqual() {
-//     //convert's entered value to number
-//     let b = Number(document.querySelector(".numBox").value);
-
-//     //get and store b's number then add to 0
-//     a += b;
-//     return (document.querySelector(".numBox").value = a);
-//   });
-
-// function plusBtn() {
-//   // let x = 0;
-//   let a = Number(document.querySelector(".numBox").value);
-//   x = a;
-// }
-
-// if (document.getElementById("idbtnPlus").clicked == true) {
-//   x = a;
-//   selectOP = 1;
-// }
-
 //selectOP is for OPERATION identifier
 let selectOP = 0;
 
@@ -68,19 +20,41 @@ document.getElementById("idbtnMinus").onclick = function storeMe() {
   selectOP = 2;
 };
 
+document.getElementById("idbtnDivide").onclick = function storeMe() {
+  a = Number(document.querySelector(".numBox").value);
+  selectOP = 3;
+};
+
+document.getElementById("idbtnMulti").onclick = function storeMe() {
+  a = Number(document.querySelector(".numBox").value);
+  selectOP = 4;
+};
+
 //EQUAL BUTTON
 document.querySelector(".btnEqual").addEventListener("click", equal);
 
 function equal() {
   if (selectOP === 1) {
     x = Number(document.querySelector(".numBox").value);
-    console.log(x + a);
-    document.querySelector(".numBox").value = x + a;
+    console.log(a + x);
+    document.querySelector(".numBox").value = a + x;
   }
 
   if (selectOP === 2) {
     x = Number(document.querySelector(".numBox").value);
-    console.log(x - a);
-    document.querySelector(".numBox").value = x - a;
+    console.log(a - x);
+    document.querySelector(".numBox").value = a - x;
+  }
+
+  if (selectOP === 3) {
+    x = Number(document.querySelector(".numBox").value);
+    console.log(a / x);
+    document.querySelector(".numBox").value = a / x;
+  }
+
+  if (selectOP === 4) {
+    x = Number(document.querySelector(".numBox").value);
+    console.log(a * x);
+    document.querySelector(".numBox").value = a * x;
   }
 }
