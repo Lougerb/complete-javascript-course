@@ -33,6 +33,7 @@ body {
   cursor: pointer;
 }
 
+.close-modalA,
 .close-modal {
   position: absolute;
   top: 1.2rem;
@@ -59,6 +60,7 @@ p {
   display: none;
 }
 
+.modalMul,
 .modal {
   position: absolute;
   top: 50%;
