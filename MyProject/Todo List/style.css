@@ -30,14 +30,36 @@ header,
   align-items: center;
   flex-direction: column;
 }
+header {
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /* Form Style */
 .noteBG {
   background-color: rgba(255, 255, 255, 0.75);
   width: 250px;
+  margin: 10px;
+
   height: 300px;
+  overflow: auto;
 }
 
+#noteContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 900px;
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* .sampleDiv {
+  display: block;
+
+  background-color: black;
+} */
 /* Note Styles */
 #createTitle,
 #writeNote {
@@ -77,4 +99,10 @@ header,
 }
 #addNote:active {
   background-color: rgb(201, 201, 201);
+}
+
+@media (max-width: 900px) {
+  #noteContainer {
+    width: 270px;
+  }
 }
