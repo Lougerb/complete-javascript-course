@@ -46,22 +46,23 @@ header {
   height: 300px;
   overflow: auto;
 }
-
+.div4Btn {
+  display: flex;
+  justify-content: center;
+  width: 280px;
+  position: relative;
+}
 #noteContainer {
   display: flex;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 900px;
+  width: 1400px;
   margin: 0;
   margin-left: auto;
   margin-right: auto;
 }
-/* .sampleDiv {
-  display: block;
 
-  background-color: black;
-} */
 /* Note Styles */
 .createTitle,
 #writeNote,
@@ -85,18 +86,15 @@ header {
   outline: none;
 }
 
-#addNote,
-.optionBtn {
-  position: relative;
+#addNote {
+  position: absolute;
   width: 25px;
   height: 25px;
   border: none;
   border-radius: 5px;
   outline: none;
-}
-#addNote {
-  left: 125px;
-  bottom: 180px;
+  right: 3px;
+  top: 50px;
   background-color: white;
 }
 
@@ -108,18 +106,35 @@ header {
   background-color: rgb(201, 201, 201);
 }
 
+/* Generated Notes Styles */
+
+.newNoteContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .optionBtn {
-  /* position: relative; */
-  right: 35px;
+  left: 0px;
+  position: absolute;
+  /* Styles */
   background-color: rgb(255, 196, 0);
-  /* width: 25px;
+  width: 25px;
   height: 25px;
   border: none;
   border-radius: 5px;
-  outline: none; */
+  outline: none;
   color: white;
   font-weight: bolder;
   align-content: center;
+  cursor: pointer;
+}
+.optionBtn:hover {
+  background-color: rgb(255, 209, 59);
+}
+.optionBtn:active {
+  background-color: rgb(202, 155, 0);
 }
 
 .generateTitle {
@@ -131,17 +146,49 @@ header {
   outline: none;
 }
 
-#noteContainer ul li {
-}
-#noteContainer ul {
-  flex-wrap: wrap;
+.drpDownList {
   display: flex;
+  position: absolute;
+  right: -13px;
   justify-content: center;
-  align-content: center;
-  list-style: none;
-  padding: 0px;
 }
 
+.drpDownList ul {
+  background: rgb(255, 196, 0);
+  margin: 0;
+  padding: 0;
+  margin-top: 20px;
+  width: 70px;
+  height: 60px;
+}
+
+.hideOptBtn {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.showOptBtn {
+  opacity: 1;
+  pointer-events: all;
+}
+.drpDownList ul > li {
+  margin-top: 5px;
+  margin-left: 10px;
+  list-style: none;
+}
+
+/* -------------------------------------------------------- MEDIA-------------------------------------------------------- */
+
+@media (max-width: 1400px) {
+  #noteContainer {
+    width: 1300px;
+  }
+}
+@media (max-width: 1300px) {
+  #noteContainer {
+    width: 1000px;
+  }
+}
 @media (max-width: 900px) {
   #noteContainer {
     width: 600px;

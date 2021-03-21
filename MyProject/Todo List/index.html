@@ -12,18 +12,23 @@
       <h1>Gerald's Notes</h1>
     </header>
     <div id="createNoteContainer">
-      <form class="createNote noteBG">
-        <input
-          type="text"
-          class="createTitle"
-          placeholder="Title"
-          autofocus
-          autocomplete="off"
-        />
-        <textarea id="writeNote" placeholder="Take A note..."></textarea>
-      </form>
-
-      <button id="addNote">+</button>
+      <div class="div4Btn">
+        <form class="createNote noteBG" id="inputNote">
+          <input
+            type="text"
+            class="createTitle"
+            placeholder="Title"
+            autofocus
+            autocomplete="off"
+            required
+          />
+          <textarea id="writeNote" placeholder="Take A note..."></textarea>
+        </form>
+        <!-- if Button is inside the form -->
+        <!-- add type="button" -->
+        <!-- To prevent refresh -->
+        <button id="addNote" type="button" form="inputNote">+</button>
+      </div>
     </div>
     <hr />
 
