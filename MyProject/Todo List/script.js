@@ -44,8 +44,9 @@ const createNewNote = function () {
   createDiv.appendChild(newNoteContent);
 
   //After creating components, it gets the value from Note creator of the created Note
-  document.querySelector(".generateTitle").value = getTitle.value;
-  document.querySelector(".newNote").value = getNote.value;
+
+  newInputTitle.value = getTitle.value;
+  newNoteContent.value = getNote.value;
 
   //clears the Note creator's content
   getTitle.value = "";
