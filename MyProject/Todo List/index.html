@@ -20,7 +20,6 @@
             placeholder="Title"
             autofocus
             autocomplete="off"
-            required
           />
           <textarea id="writeNote" placeholder="Take A note..."></textarea>
         </form>
@@ -30,11 +29,26 @@
         <button id="addNote" type="button" form="inputNote">+</button>
       </div>
     </div>
+    <div class="makeFormMiddle">
+      <!-- <div class="div4SaveBtn editHidden">
+        <form class="editMyNote noteBG newNoteContent">
+          <input
+            type="text"
+            placeholder="Empty Title..."
+            class="editMyTitle"
+          /><textarea
+            class="editNoteContent"
+            placeholder="Empty Note..."
+          ></textarea>
+        </form>
+        <button class="saveBtn">Save</button>
+      </div> -->
+    </div>
+    <div class="editOverlay editHidden"></div>
     <hr />
 
     <div id="noteContainer"></div>
-    <div class="editMyNote noteBG editHidden"></div>
-    <div class="editOverlay editHidden"></div>
     <script src="script.js"></script>
   </body>
 </html>
+<!-- editHidden -->
