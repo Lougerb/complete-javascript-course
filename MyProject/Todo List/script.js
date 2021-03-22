@@ -40,10 +40,12 @@ const createNewNote = function () {
 
   //Generate Title
   newInputTitle.setAttribute("type", "text");
+  newInputTitle.setAttribute("placeholder", "Empty Title...");
   newInputTitle.classList.add("generateTitle");
 
   //Generate new Notes Content
   newNoteContent.classList.add("newNote");
+  newNoteContent.setAttribute("placeholder", "Empty Note...");
 
   //Will create the new div inside the Note's container
   //notesContainer=Parent
@@ -72,8 +74,11 @@ const createNewNote = function () {
 
   //After creating components, it gets the value from Note creator of the created Note
 
-  editDrpDwnLi.innerHTML = `<a href="#">Edit</a>`;
-  deleteDrpDwnLi.innerHTML = `<a href="www.google.com" target="_blank"class="delMe">Delete</a>`;
+  editDrpDwnLi.innerHTML = `<span>Edit</span>`;
+  deleteDrpDwnLi.innerHTML = `<span>Delete</span>`;
+  editDrpDwnLi.classList.add("editBtn");
+  deleteDrpDwnLi.classList.add("deleteBtn");
+
   newInputTitle.value = getTitle.value;
   newNoteContent.value = getNote.value;
   newInputTitle.readOnly = true;
@@ -83,27 +88,39 @@ const createNewNote = function () {
   getTitle.value = "";
   getNote.value = "";
 
-  // const delBtn = document.querySelector(".delMe");
-  // const deleteMe = function () {
-  //   const deleteNoteBG = document.querySelector(".noteBG");
+  //To Show Option
+  createOptionBtn.addEventListener("click", function () {
+    drpDwnUl.classList.toggle("hideOptBtn");
+  });
+  //To prevent Option stay open when clicking other option
+  document.addEventListener("mouseup", function (e) {
+    if (!drpDwnUl.contains(e.target) && !createOptionBtn.contains(e.target)) {
+      drpDwnUl.classList.add("hideOptBtn");
+    }
+  });
 
-  //   deleteNoteBG.remove();
-  // };
+  //EDIT BUTTON=============================================================
+  editDrpDwnLi.addEventListener("click", function () {
+    const _editOverlay = document.querySelector(".editOverlay");
+    const _editMyNote = document.querySelector(".editMyNote");
 
-  // delBtn.addEventListener("click", deleteMe);
+    //To show Overlay and Note Editor of the current Note
+    _editMyNote.classList.remove("editHidden");
+    _editOverlay.classList.remove("editHidden");
 
-  // const ulO = document.getElementsByClassName("ulOption");
-  for (let i = 0; i < openOpt.length; i++) {
-    const showMeModal = function () {
-      ulArr[i].classList.toggle("hideOptBtn");
-      console.log(openOpt.length, ulArr.length);
-      // ulArr[i].classList.add("showOptBtn");
+    //Click anywhere on Overlay then closes Edit without Save change
+    document.addEventListener("mouseup", function (e) {
+      if (_editOverlay.contains(e.target)) {
+        _editOverlay.classList.add("editHidden");
+        _editMyNote.classList.add("editHidden");
+      }
+    });
 
-      // closeModalALL[i].addEventListener("click", closeMeModal);
-    };
-    openOpt[i].addEventListener("click", showMeModal);
-  }
+    console.log("I am Working");
+  });
+
+  //Delete Button
+  // const deleteBtn = document.
 };
-//////////////////
 
 btnAddNote.addEventListener("click", createNewNote);
