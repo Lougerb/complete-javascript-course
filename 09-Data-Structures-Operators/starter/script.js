@@ -206,28 +206,76 @@ const {
   players: [player1 = [], player2 = []],
 } = game;
 
-console.log(`Team 1 Players: ${player1}`);
-console.log(`Team 2 Players: ${player2}`);
+// console.log(`Team 1 Players: ${player1}`);
+// console.log(`Team 2 Players: ${player2}`);
 
 const allPlayers = [...player1, ...player2];
 
-console.log(`All players from both teams: ${allPlayers}`);
+// console.log(`All players from both teams: ${allPlayers}`);
 
 //get  Goal keeper - assuming the first player
 
 const [t1_goalKeeper, ...t1_outFields] = [...player1];
 const [t2_goalKeeper, ...t2_outFields] = [...player2];
 
-console.log(
-  `Team 1 Goal Keeper: ${t1_goalKeeper} and Team 2 Goal Keeper: ${t2_goalKeeper}`
-);
+// console.log(
+//   `Team 1 Goal Keeper: ${t1_goalKeeper} and Team 2 Goal Keeper: ${t2_goalKeeper}`
+// );
 
-console.log(`Team 1 Outfields: ${t1_outFields}`);
-console.log(`Team 2 Outfields: ${t2_outFields}`);
+// console.log(`Team 1 Outfields: ${t1_outFields}`);
+// console.log(`Team 2 Outfields: ${t2_outFields}`);
 
 //#4 --- Subtitute players
 const player1newSub = ["Thiago", "Coutinho", "Persic"];
 const player1Final = [...player1, ...player1newSub];
-console.log(`Team 1 added more players ${player1newSub}`);
-console.log(`Total players in team 1: ${player1Final.length}`);
-console.log(`Total players in team 2: ${player2.length}`);
+// console.log(`Team 1 added more players ${player1newSub}`);
+// console.log(`Total players in team 1: ${player1Final.length}`);
+// console.log(`Total players in team 2: ${player2.length}`);
+
+////=========================
+const myOwnMenu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// console.log(myOwnMenu);
+
+//OLD SCHOOL JAVASCRIPT FOR LOOP
+for (let i = 0; i < myOwnMenu.length; i++) {
+  // console.log(myOwnMenu[i]);
+}
+
+//Using Modern Javascript
+
+//format
+// for(var Name of arrayName){expression}
+
+for (const myElements of myOwnMenu) {
+  // console.log(myElements);
+}
+////=========================
+////Using with Index
+////Use deconstruction expression []
+
+// for([var Name] of arrayName.entries() ){expression}
+
+for (const [itemNum, myNewElements] of myOwnMenu.entries()) {
+  // console.log(itemNum, myNewElements);
+  //to make it look nice
+  // console.log(`${itemNum + 1}: ${myNewElements}`);
+}
+
+///////CHALLENGE #2
+
+// #1
+
+for (let [playerNum, playerScored] of game.scored.entries()) {
+  // console.log(`Goal ${playerNum + 1}: ${playerScored}`);
+}
+
+// #2
+//get the value from odds
+
+let aveOdds = 0;
+
+//dont need brackets if calculating in for-of Loop
+//dont need ; at the end of for-of loop
+for (let myOdds of Object.values(game.odds)) aveOdds += myOdds;
+aveOdds /= Object.keys(game.odds).length;
+console.log(aveOdds);
