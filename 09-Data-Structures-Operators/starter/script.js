@@ -184,6 +184,7 @@ const game = {
     x: 3.25,
     team2: 6.5,
   },
+
   // printGoals: function (t1_numOfPlayer, t2_numOfPlayer) {
   //   const t1numofplayer = t1_numOfPlayer.length;
   //   const t2numofplayer = t2_numOfPlayer.length;
@@ -276,6 +277,152 @@ let aveOdds = 0;
 
 //dont need brackets if calculating in for-of Loop
 //dont need ; at the end of for-of loop
-for (let myOdds of Object.values(game.odds)) aveOdds += myOdds;
+const valuesOfOdds = Object.values(game.odds);
+
+for (let myOdds of valuesOfOdds) aveOdds += myOdds;
 aveOdds /= Object.keys(game.odds).length;
-console.log(aveOdds);
+
+// console.log(aveOdds);
+
+//#3
+for (let [teamOdds, valueOdds] of Object.entries(game.odds)) {
+  //we use game[teamOdds] instead of using the dot notation
+  //using game.teamOdds will give us "Unidentify"
+  //so use [] instaed for accessing the value of team1 and team2
+  const stringOdds =
+    teamOdds === "x" ? `draw:` : `victory of Team ${game[teamOdds]}`;
+
+  // console.log(`Odds of ${stringOdds} ${valueOdds}`);
+
+  // console.log(teamOdds, valueOdds);
+}
+
+// console.log(game.team1);
+
+// const scorers = {
+//   players: {
+//     Gnarby: 1,
+//     Hummels: 1,
+//     Lewan: 2,
+//   },
+// };
+
+// console.log(scorers);
+const scorers = {};
+
+for (let x of game.scored) {
+  //scorers[x] is the same with scores.game.scored
+  //scorers[x]++ is scorers[x] incrimenting
+  //will return who's equal to 1
+  //then if everything's counted, will count the rest and sum it
+  scorers[x]++ || (scorers[x] = 1);
+}
+
+// console.log(scorers);
+
+//Output:
+// scorers = {
+// Gnarby: 1,
+// Hummels: 1,
+// Lewan: 2
+// }
+
+//SETS
+//example of sets
+const myFoods = new Set([
+  "Chicharon",
+  "Kwek-kwek",
+  "pisbol",
+  "Chicharon",
+  "pisbol",
+  "manok",
+]);
+
+// Set will remove duplucates
+// you cannot get values from set
+
+// console.log(myFoods);
+
+//you can put set on array
+const myNewFoods = ["cheese", "apple", "apple", "orange", "popcorn", "cheese"];
+
+//it will remove duplicate inside the array
+//but it will stay as an ARRAY
+//can also get values
+const myNewFoods_RemoveDups = [...new Set(myNewFoods)];
+// console.log(myNewFoods_RemoveDups);
+// console.log(myNewFoods_RemoveDups[1]);
+
+//array will convert to SET
+const myNewFoodsUnique = new Set([...myNewFoods]);
+// console.log(myNewFoodsUnique);
+//if we want to know the actual number of food by categories
+//use .size
+// console.log(myFoods.size);
+
+//MAPS
+
+const rest = new Map();
+
+rest.set("myRestoName", "MyBongo");
+// console.log(rest);
+
+//can be replace
+rest.set("myRestoName", "MyResto");
+// console.log(rest);
+//If added more, it will update rest Map
+rest.set("Location", "Makati");
+rest.set("Open", 11);
+rest.set("Close", 24);
+// console.log(rest);
+
+// .get will get the value of the Map's KEY
+//if key is not inside the map, then it will return UNDEFINED
+// console.log(rest.get("myRestoName"));
+
+//check if there's a key
+// console.log(rest.has("categories")); //it will return false
+
+//Deleting a Key
+// rest.delete("Location");
+// console.log(rest);
+
+//Wipe all Map's keys
+// rest.clear();
+// console.log(rest);
+
+//get size of Map
+// console.log(rest.size);
+
+//Array as Key for Map
+//DO NOT USE ACTUAL ARRAY AS KEY
+//Instead, store it on variable then take the variable as the key
+const sampArr = [1, 2, 3];
+rest.set(sampArr, "This key is Array");
+// console.log(rest);
+
+//converting object to map
+// console.log(Object.entries(openingHours)); //Sample Object
+const hourMap = new Map(Object.entries(openingHours));
+console.log(hourMap);
+
+const quiz = new Map([
+  ["question", "Best Language to learn?"],
+  [1, "C"],
+  [2, "Java"],
+  [3, "JS"],
+  ["correct", 3],
+  [true, "Correct ka jan!"],
+  [false, "Mali ka"],
+]);
+console.log(quiz);
+
+// const answerKo = Number(prompt("YourAnswer?"));
+// console.log(answerKo);
+//check if true or false
+// console.log(quiz.get(quiz.get("correct")) === answerKo);
+
+//converting Map to Array
+
+const map2Arr = [...quiz];
+console.log(map2Arr);
