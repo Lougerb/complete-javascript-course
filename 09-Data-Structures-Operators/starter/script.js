@@ -345,7 +345,6 @@ const myFoods = new Set([
 
 //you can put set on array
 const myNewFoods = ["cheese", "apple", "apple", "orange", "popcorn", "cheese"];
-
 //it will remove duplicate inside the array
 //but it will stay as an ARRAY
 //can also get values
@@ -404,7 +403,7 @@ rest.set(sampArr, "This key is Array");
 //converting object to map
 // console.log(Object.entries(openingHours)); //Sample Object
 const hourMap = new Map(Object.entries(openingHours));
-console.log(hourMap);
+// console.log(hourMap);
 
 const quiz = new Map([
   ["question", "Best Language to learn?"],
@@ -415,7 +414,7 @@ const quiz = new Map([
   [true, "Correct ka jan!"],
   [false, "Mali ka"],
 ]);
-console.log(quiz);
+// console.log(quiz);
 
 // const answerKo = Number(prompt("YourAnswer?"));
 // console.log(answerKo);
@@ -425,4 +424,45 @@ console.log(quiz);
 //converting Map to Array
 
 const map2Arr = [...quiz];
-console.log(map2Arr);
+// console.log(map2Arr);
+
+const gameEvents = new Map([
+  [17, "⚽️ GOAL"],
+  [36, "🔁 Substitution"],
+  [47, "⚽️ GOAL"],
+  [61, "🔁 Substitution"],
+  [64, "🔶 Yellow card"],
+  [69, "🔴 Red card"],
+  [70, "🔁 Substitution"],
+  [72, "🔁 Substitution"],
+  [76, "⚽️ GOAL"],
+  [80, "⚽️ GOAL"],
+  [92, "🔶 Yellow card"],
+]);
+
+const listOfEvents = new Set([]);
+
+for (let [minute, myEvent] of gameEvents) {
+  //#1 create an array of an event without dups
+  listOfEvents.add(myEvent);
+
+  //#2 if yellow card detected, it will delete its key assigned
+  //but total game is 90 minutes
+  if (minute < 90 && myEvent === "🔶 Yellow card") {
+    gameEvents.delete(minute);
+  }
+
+  // #3
+  // for (let i = 1; i <= 10; i++) {
+  //   const minOfGame = i * 9;
+  //   if (minOfGame > minute) console.log(`somthing happen on ${minOfGame}`);
+
+  // }
+}
+console.log(listOfEvents);
+
+// for (let [minute, myEvent] of gameEvents) console.log(minute);
+
+// #2
+
+console.log(gameEvents);
