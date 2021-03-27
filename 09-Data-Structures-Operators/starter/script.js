@@ -550,3 +550,61 @@ const fixedName =
   rumbledName[0].toUpperCase() + rumbledName.slice(1).toLowerCase();
 
 console.log(fixedName);
+
+//Trimming
+//removing whitespaces
+const myEmail = "anon@gmail.com";
+//Dumb user enter his/her email
+const loginEmail = "  AnoN@gMaiL.coM  ";
+//a function to normalize the email
+const normalizeEmail = loginEmail.toLowerCase().trim();
+
+console.log(normalizeEmail);
+//check if myemail is corrected
+console.log(myEmail === normalizeEmail);
+
+//Replacing
+//CASE SENSITIVE!
+const announcement = "All passenger come to boarding gate. Boarding gate 23!";
+
+//.replaceAll
+console.log(announcement.replaceAll("gate", "door"));
+//.relace - first searched word
+console.log(announcement.replace("gate", "door"));
+
+//.includes
+//Boolean type
+//Will search for mentioned string
+
+console.log(announcement.includes("passenger"));
+console.log(announcement.includes("board"));
+
+//.startsWith
+//Boolean type
+//will search for mentioned string on the starting index
+console.log(announcement.startsWith("Al"));
+
+//Practice
+
+const checkItem = function (item) {
+  const personsItem = item.toLowerCase();
+  if (personsItem.includes("gun") || personsItem.includes("knife")) {
+    console.log("You're not allowed");
+  } else {
+    console.log("Get in");
+  }
+};
+
+checkItem("Bro I have a gun with me, dont mind if I do");
+checkItem("I'm bringing my dog with me to the party");
+checkItem("Pocket Knife and juice!");
+checkItem("I'll get some foods and drinks later!");
+
+//Capitilizing Name
+const checkName = function (theirName) {
+  const capFirstLetter =
+    theirName[0].toUpperCase() + theirName.slice(1).toLowerCase();
+  console.log(`Your name is ${capFirstLetter}?`);
+};
+
+checkName("loUeiN");
