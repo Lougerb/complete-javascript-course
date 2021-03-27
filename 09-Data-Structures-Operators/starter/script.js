@@ -441,6 +441,7 @@ const gameEvents = new Map([
 ]);
 
 const listOfEvents = new Set([]);
+let sumEventTime = 0;
 
 for (let [minute, myEvent] of gameEvents) {
   //#1 create an array of an event without dups
@@ -451,18 +452,101 @@ for (let [minute, myEvent] of gameEvents) {
   if (minute < 90 && myEvent === "🔶 Yellow card") {
     gameEvents.delete(minute);
   }
-
   // #3
-  // for (let i = 1; i <= 10; i++) {
-  //   const minOfGame = i * 9;
-  //   if (minOfGame > minute) console.log(`somthing happen on ${minOfGame}`);
+  if (minute < 90) {
+    sumEventTime += minute;
+  }
 
-  // }
+  //#4
+  // minute < 45
+  //   ? console.log(`FIRST HALF: ${minute}, ${myEvent}`)
+  //   : console.log(`SECOND HALF: ${minute}, ${myEvent}`);
 }
-console.log(listOfEvents);
+// console.log(listOfEvents);
 
 // for (let [minute, myEvent] of gameEvents) console.log(minute);
 
 // #2
 
-console.log(gameEvents);
+// console.log(gameEvents);
+
+// #3 Print the following
+// An event happened in every ${averageTime] minute
+// const aveEventTime = gameEvents.[gameEvents.length-1] ;
+
+//To get the last key, you have to pop/remove it from the Map
+// console.log([...gameEvents.keys()].pop());
+
+const totalGameEventTime = [...gameEvents.keys()].pop();
+const aveEventTime = totalGameEventTime / gameEvents.size;
+
+//.toFixed get number to have 2 decimal places
+// console.log(`An event happened in every ${aveEventTime.toFixed(2)} minutes`);
+
+//Working with strings-================================================
+
+const airline = "Tap Air Portugal";
+const plane = "A320";
+
+//We can pick each letter
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log(plane[3]);
+
+//we can also type a string directly with array
+//then get the first character
+console.log("B737"[0]);
+
+//We may know the length of the string
+// space is also a string so it may counted
+console.log(airline.length);
+console.log("B737".length);
+
+//Will check the indext of the first "r"
+console.log(airline.indexOf("r"));
+
+//will check the last indext of the last "r"
+console.log(airline.lastIndexOf("r"));
+
+//Will check the index of the first character that has been entered
+console.log(airline.indexOf("Portugal"));
+//.indexOf is CASE SENSITIVE
+//for example, if we type portugal instead of Portugal
+//it will return -1, because "portugal" is not found in the airline's string
+console.log(airline.indexOf("portugal"));
+
+//.slice
+//it  will get the string of the entered index and the rest
+//but it will remove the string before the entered index
+console.log(airline.slice(4));
+
+//slice with end
+//Format .slice (beginningOfIndex, endingOfIndex)
+//will only slice the specific string
+console.log(airline.slice(4, 7));
+
+//negative values will start slicing at the end to beginning
+console.log(airline.slice(-3));
+
+const checkMiddleSeat = function (seat) {
+  // B and E are middle seats
+  const s = seat.slice(-1);
+  if (s === "B" || s === "E") console.log("You got the middle seat 😬");
+  else console.log("You got lucky 😎");
+};
+
+checkMiddleSeat("11B");
+checkMiddleSeat("23C");
+checkMiddleSeat("3E");
+
+//Converting to Lowercase or Uppercase
+const myName = "Louein";
+console.log(myName.toLowerCase());
+console.log(myName.toUpperCase());
+
+const rumbledName = "lOuEin";
+const fixedName =
+  rumbledName[0].toUpperCase() + rumbledName.slice(1).toLowerCase();
+
+console.log(fixedName);
