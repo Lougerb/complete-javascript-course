@@ -604,3 +604,4 @@ const makeMeCap = function (getName) {
 };
 
 console.log(makeMeCap(dName));
+//xd
