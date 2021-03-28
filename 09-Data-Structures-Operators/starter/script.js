@@ -550,3 +550,57 @@ const fixedName =
   rumbledName[0].toUpperCase() + rumbledName.slice(1).toLowerCase();
 
 console.log(fixedName);
+
+//split and join
+
+const lFullName = "Louein Gerald Baling";
+//Will split by the " " space Character or any character
+const splitMyName = lFullName.split(" ");
+console.log(splitMyName);
+
+//Will join the array by the " " space Character between them
+const joinMyName = splitMyName.join(" ");
+console.log(joinMyName);
+
+//practice
+// make every word's first word capitalize
+
+const dName = "jbUvM KNfPS hZPzn ZfVJq WQgRx";
+
+const makeMeCap = function (getName) {
+  //split name first
+  const splitName = getName.split(" ");
+
+  //create an empty array where we can store the
+  //splited words that has been capitazile
+  const storeCapSplitName = [];
+
+  //Process to capitalize every word
+
+  //Pwede ito
+  // for (let i = 0; i < splitName.length; i++) {
+  //will get the value of every index then
+  //then will push to storeCapSplitName after the first index
+  //then will loop to the next index
+
+  //   storeCapSplitName.push(
+  //     splitName[i][0].toUpperCase() + splitName[i].slice(1).toLowerCase()
+  //   );
+  // }
+
+  //Or Ito
+  for (let getWord of splitName) {
+    //will get the value of every index then
+    //then will push to storeCapSplitName after the first index
+    //then will loop to the next index
+    storeCapSplitName.push(
+      getWord[0].toUpperCase() + getWord.slice(1).toLowerCase()
+    );
+  }
+
+  const capJoinName = storeCapSplitName.join(" ");
+
+  return capJoinName;
+};
+
+console.log(makeMeCap(dName));
