@@ -35,4 +35,5 @@ const theirIntro = person1.myIntro;
 
 //This should work, using CALL
 //"this" keyword will work as long as they have the same property
+//Syntax: func.call([thisArg[, arg1, arg2, ...argN]])
 theirIntro.call(person2, person2._name, person2._jobPosition);
