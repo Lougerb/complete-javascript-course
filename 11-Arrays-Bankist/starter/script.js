@@ -74,3 +74,60 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+//ARRAY METHODS----------------------------------
+
+//Valurables to use
+let arr = ['a', 'b', 'c', 'd', 'e', 'f'];
+let arr2 = ['q', 'w', 'e', 'r', 't', 'y'];
+
+//SLICE METHOD
+//doesnt mutate the array but only give the result value
+
+console.log(arr.slice(2));
+//output: ["c", "d", "e", "f"]
+
+//negative number will get the last n of array
+console.log(arr.slice(-2));
+//output: ["e", "f"]
+
+//syntax .slice(start, end)
+console.log(arr.slice(1, 3));
+//output: ["b", "c"]
+
+//SPLICE METHOD
+//Will MUTEATE the original array
+// will actually delete/separate arrays from the original array
+
+console.log(arr.splice(2));
+//output: ["c", "d", "e", "f"]
+console.log(arr);
+//output:  ["a", "b"]
+
+//REVERSE METHOD
+//this method MUTATE the original array EVEN you store it on a variable
+
+// console.log(arr2.reverse());
+// output: ["y", "t", "r", "e", "w", "q"]
+// console.log(arr2);
+// output: ["y", "t", "r", "e", "w", "q"]
+
+//CONCAT METHOD
+//Will merge 2 arrays
+//DOESN'T MUTATE ORIGINAL ARRAY
+
+const arr3 = ['1', '2', '3', '4', '5'];
+const arr4 = ['6', '7', '8', '9', '10'];
+
+const mergeArray = arr3.concat(arr4);
+console.log(mergeArray);
+
+//same method with "..." array
+console.log([...arr3, ...arr4]);
+
+//JOIN METHOD
+//Will Join array with a string between them
+//will convert array to string
+const joinArr = mergeArray.join('-');
+console.log(joinArr);
+//Output: 1-2-3-4-5-6-7-8-9-10
