@@ -124,7 +124,7 @@ merc.accelerating();
 // console.log(Array.from(sampleArr));
 // output (9) [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-/* class Car {
+class Car {
   constructor(make, speed, unit) {
     this.make = make;
     this.speed = speed;
@@ -171,34 +171,89 @@ merc.accelerating();
   }
 }
 
-const bench = new Car("Bench", 10, "km/h");
+// const carModel = "Ford",
+//   carSpeed = 20,
+//   carSpeedUnit = "km/h";
+
+// const carInfo = new Car("Bench", 10, "km/h");
+// const carInfo = new Car(carModel, carSpeed, carSpeedUnit);
+
+// let getCar = "";
+
+// const carInfo = function (carModel, carSpeed, carSpeedUnit) {
+//   const getCar = new Car(carModel, carSpeed, carSpeedUnit);
+// };
+
+/* const carModel = "Ford",
+  carSpeed = 99,
+  carSpeedUnit = "km/h";
+
+const getCar = new Car(carModel, carSpeed, carSpeedUnit);
 
 // Will show property
-console.log(bench);
-console.log(bench.speedUS);
-console.log(bench);
-bench.speedUS = bench.speedUS;
-bench.speedUS = 10;
+console.log(getCar);
+console.log(getCar.speedUS);
+console.log(getCar);
+getCar.speedUS = getCar.speedUS;
+getCar.speedUS = 10;
 
-bench.accelerating();
-bench.accelerating();
-bench.accelerating();
-bench.accelerating();
+getCar.accelerating();
 
-bench.speedUS;
+getCar.speedUS;
 
-bench.accelerating();
-bench.accelerating();
-bench.accelerating();
-bench.accelerating();
+getCar.accelerating();
 
-bench.speedUS;
-bench.speedUS = bench.speedUS;
-bench.accelerating();
-bench.accelerating();
-bench.accelerating();
-bench.accelerating();
-bench.speedUS;
-bench.accelerating();
-bench.accelerating();
-bench.accelerating(); */
+getCar.speedUS;
+getCar.speedUS = getCar.speedUS;
+getCar.accelerating();
+getCar.accelerating();
+getCar.speedUS;
+getCar.accelerating();
+ */
+
+// Parent Class
+const Person = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+
+Person.prototype.calcAge = function () {
+  return 2039 - this.birthYear;
+};
+
+// Child Class
+const Student = function (firstName, birthYear, course) {
+  /* Instead of writting:
+    this.firstName=firstName;
+    this.birthYear=birthYear;
+    Write this: */
+  // This is a way to call class function
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+// To access calcAge from person
+// Link Student class to person class
+// Must be write after Child class Function
+Student.prototype = Object.create(Person.prototype);
+
+const mike = new Student("Mike Wazowski", 1990, "ComSci");
+const jun = new Person("Jun Amaki", 1998);
+
+console.log(mike);
+
+console.log(mike.calcAge());
+
+const Evehicle = function (make, speed, charge) {
+  Car.call(this, make, speed);
+  this.charge = charge;
+};
+
+const jeep = new Evehicle("Jeep", 120, 99);
+console.log(jeep);
+const fx = new Car("Tamaraw", 99, "km/h");
+
+console.log(fx);
+// ERROR HERE
+// make a new Car class using function
+// class Car wont work
