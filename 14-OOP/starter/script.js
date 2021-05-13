@@ -211,49 +211,185 @@ getCar.speedUS;
 getCar.accelerating();
  */
 
-// Parent Class
-const Person = function (firstName, birthYear) {
-  this.firstName = firstName;
-  this.birthYear = birthYear;
-};
+// /////////////////// Class as functions----------------------------
 
-Person.prototype.calcAge = function () {
-  return 2039 - this.birthYear;
-};
+// // Parent Class
+// const Person = function (firstName, birthYear) {
+//   this.firstName = firstName;
+//   this.birthYear = birthYear;
+// };
 
-// Child Class
-const Student = function (firstName, birthYear, course) {
-  /* Instead of writting:
-    this.firstName=firstName;
-    this.birthYear=birthYear;
-    Write this: */
-  // This is a way to call class function
-  Person.call(this, firstName, birthYear);
-  this.course = course;
-};
+// Person.prototype.calcAge = function () {
+//   return 2039 - this.birthYear;
+// };
 
-// To access calcAge from person
-// Link Student class to person class
-// Must be write after Child class Function
-Student.prototype = Object.create(Person.prototype);
+// // Child Class
+// const Student = function (firstName, birthYear, course) {
+//   /* Instead of writting:
+//     this.firstName=firstName;
+//     this.birthYear=birthYear;
+//     Write this: */
+//   // This is a way to call class function
+//   Person.call(this, firstName, birthYear);
+//   this.course = course;
+// };
 
-const mike = new Student("Mike Wazowski", 1990, "ComSci");
-const jun = new Person("Jun Amaki", 1998);
+// // To access calcAge from person
+// // Link Student class to person class
+// // Must be write after Child class Function
+// Student.prototype = Object.create(Person.prototype);
 
-console.log(mike);
+// const mike = new Student("Mike Wazowski", 1990, "ComSci");
+// const jun = new Person("Jun Amaki", 1998);
 
-console.log(mike.calcAge());
+// console.log(mike);
 
-const Evehicle = function (make, speed, charge) {
-  Car.call(this, make, speed);
-  this.charge = charge;
-};
+// console.log(mike.calcAge());
 
-const jeep = new Evehicle("Jeep", 120, 99);
-console.log(jeep);
-const fx = new Car("Tamaraw", 99, "km/h");
+// // class Car wont work and it's from ES5
+// // This is ES6 method  for Parentiing class
 
-console.log(fx);
-// ERROR HERE
-// make a new Car class using function
-// class Car wont work
+// // Parent Car
+// const ModernCar = function (make, speed) {
+//   this.make = make;
+//   this.speed = speed;
+// };
+// // Parent Methods
+
+// // Child Class
+// const Evehicle = function (make, speed, charge) {
+//   ModernCar.call(this, make, speed);
+//   this.charge = charge;
+// };
+
+// // Child linking to parent
+// Evehicle.prototype = Object.create(ModernCar.prototype);
+
+// // Child method should declare after child linking to parent
+
+// // Child Methods
+
+// // Setter method for ES6
+// Evehicle.prototype.chargeBattery = function (chargeTo) {
+//   if (this.charge == 100) {
+//     console.log(`Battery is full`);
+//   } else {
+//     if (this.charge + chargeTo >= 100) {
+//       console.log("Battery is Full");
+//       return (this.charge = 100);
+//     } else {
+//       this.charge = this.charge + chargeTo;
+//       console.log(`${this.make} is charging to ${this.charge}`);
+//       return this.charge;
+//     }
+//   }
+// };
+
+// Evehicle.prototype.accelerate = function () {
+//   if (this.charge > 0) {
+//     this.speed += 10;
+//     this.charge -= 5;
+//     console.log(`${this.make} is accelerating, discharging to ${this.charge}`);
+//   } else {
+//     console.log(`${this.make} has empty battery, need to recharge`);
+//   }
+// };
+// Evehicle.prototype.deccelerate = function () {
+//   if (this.charge > 0) {
+//     this.speed -= 5;
+//     this.charge -= 2;
+//     console.log(`${this.make} is deccelerating, discharging to ${this.charge}`);
+//   } else {
+//     console.log(`${this.make} has empty battery, need to recharge`);
+//   }
+// };
+
+// const jeep = new Evehicle("Jeep", 120, 12);
+// console.log(jeep);
+
+// const fx = new ModernCar("Tamaraw", 99, "km/h");
+// console.log(fx);
+
+// jeep.accelerate();
+// jeep.accelerate();
+// jeep.accelerate();
+// jeep.accelerate();
+// jeep.accelerate();
+// jeep.accelerate();
+// jeep.accelerate();
+// jeep.accelerate();
+// jeep.accelerate();
+// jeep.accelerate();
+// jeep.accelerate();
+// jeep.accelerate();
+// jeep.accelerate();
+// jeep.accelerate();
+// jeep.chargeBattery(10);
+// jeep.chargeBattery(10);
+// jeep.chargeBattery(10);
+// jeep.chargeBattery(10);
+// jeep.chargeBattery(10);
+// jeep.chargeBattery(10);
+// jeep.chargeBattery(10);
+// jeep.chargeBattery(10);
+// jeep.chargeBattery(10);
+// jeep.chargeBattery(10);
+// jeep.accelerate();
+// jeep.accelerate();
+// jeep.accelerate();
+// jeep.accelerate();
+// jeep.accelerate();
+// jeep.accelerate();
+// jeep.deccelerate();
+// jeep.deccelerate();
+// jeep.deccelerate();
+// jeep.deccelerate();
+
+// Class inheritance
+
+// // Parent
+// class PersonCl {
+//   constructor(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   }
+
+//   calcAge = function () {
+//     return console.log(2039 - this.birthYear);
+//   };
+// }
+// const ge = new PersonCl("Gerald", 1997);
+// console.log(ge);
+
+// ge.calcAge();
+
+// // Child inheriting parent constructor
+// // Using "Extent"
+// // will inherit methods of parents
+// class Student extends PersonCl {
+//   constructor(firstName, birthYear, course, courseYear) {
+//     super(firstName, birthYear);
+//     this.course = course;
+//     this.courseYear = courseYear;
+//   }
+
+//   // Can also define own methods
+//   calcGrad = function () {
+//     return console.log(this.courseYear + 2);
+//   };
+// }
+
+// const li = new Student("liz", 1994, "Math", 2);
+
+// console.log(li);
+
+// li.calcAge();
+// li.calcGrad();
+
+class Account {
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.pin = pin;
+  }
+}
