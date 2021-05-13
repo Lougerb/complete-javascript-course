@@ -388,8 +388,26 @@ getCar.accelerating();
 
 class Account {
   constructor(owner, currency, pin) {
+    // User info
     this.owner = owner;
     this.currency = currency;
     this.pin = pin;
+    // for user interface and transactions
+    this.movements = [];
+    this.locale = navigator.language;
+    console.log(`Thanks for opening an account, ${owner}`);
+  }
+  // Public Interface
+  deposit(val) {
+    this.movements.push(val);
+  }
+  withdraw(val) {
+    this.deposit(-val);
   }
 }
+
+const acc1 = new Account("Gerald", "PHP", 1111);
+console.log(acc1);
+
+acc1.deposit(20);
+acc1.withdraw(30);
