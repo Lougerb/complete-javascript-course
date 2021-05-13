@@ -387,27 +387,85 @@ getCar.accelerating();
 // li.calcGrad();
 
 class Account {
+  // Public Fields
+  locale = navigator.language;
+
+  // Private fields
+  // using hash(#) to accessible ONLY inside the class
+  // NOT COMPATIBLE FOR MOST BROWSERS
+  //  Use _ instead to fake it
+  #movements = [];
+  // Can't declare #pin=pin but can declare #pin only
+  // then define inside the constructor
+  #pin;
+
   constructor(owner, currency, pin) {
     // User info
     this.owner = owner;
     this.currency = currency;
-    this.pin = pin;
+
+    this.#pin = pin;
     // for user interface and transactions
-    this.movements = [];
-    this.locale = navigator.language;
+    // this._movements = [];
+    // this.locale = navigator.language;
     console.log(`Thanks for opening an account, ${owner}`);
   }
-  // Public Interface
+  // Public Methods
   deposit(val) {
-    this.movements.push(val);
+    this.#movements.push(val);
+    return this;
   }
   withdraw(val) {
     this.deposit(-val);
+    return this;
+  }
+
+  getMovements() {
+    return this.#movements;
+  }
+
+  // Private Methods
+  // Using # hash in the beginning of the method
+  // But not compatible for most browsers
+  // Use _ instead
+  #sayHi() {
+    console.log("Hi");
+  }
+
+  // Static Methods
+  static sayHello() {
+    console.log("Hello");
+    // return "Hello WOrld";
+  }
+  sayHelloHello() {
+    return Account.sayHello();
   }
 }
 
 const acc1 = new Account("Gerald", "PHP", 1111);
 console.log(acc1);
 
+// Instead of using .movements.puhs
+// acc1.movements.push(20);
+// acc1.movements.push(-30);
+// We instead create a "Public Interface":
+// Deposit and withdraw methods inside the class
+// this will be an easy to read for developers
 acc1.deposit(20);
 acc1.withdraw(30);
+
+// Encapsulation - to protect a property or method for accessing
+
+// You will get error when accessing private field
+// console.log(acc1.#movements);
+
+// To access #movements
+// we create a method to get the value of #movements
+console.log(acc1.getMovements());
+
+// Chaining methods
+// by adding 'return this' on every last line of the public methods
+
+acc1.deposit(30).withdraw(40).withdraw(100);
+console.log(acc1.getMovements());
+acc1.sayHelloHello();
