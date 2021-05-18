@@ -433,11 +433,16 @@ class Account {
   }
 
   // Static Methods
+  // Can't call on an Object
+  // But can call on Object class
   static sayHello() {
     console.log("Hello");
     // return "Hello WOrld";
   }
   sayHelloHello() {
+    // to call static
+    // ClassName.StaticMethod();
+    //  Can't use 'this' method
     return Account.sayHello();
   }
 }
