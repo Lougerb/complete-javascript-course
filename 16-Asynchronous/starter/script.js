@@ -71,40 +71,170 @@ const getCountryData = function (country) {
   //   .then(data => renderCountry(data[0]))
   // );
 
-  fetch(`https://restcountries.eu/rest/v2/name/${country}`)
-    // .then method syntax
-    // .then (Promise_fullfilled, Promise_rejected)
-    .then(
-      // Function if promise fulfilled
-      response => response.json()
+  // Long method for fetching============ START============================
 
-      // Function if promise rejected
-      // To catch error before initialize
-      // err => alert(err)
-    )
+  // fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+  //   // .then method syntax
+  //   // .then (Promise_fullfilled, Promise_rejected)
+  //   .then(
+  //     // Function if promise fulfilled
+  //     response => {
+  //       if (!response.ok)
+  //         throw new Error(`Country not found (${response.status})`);
+  //       return response.json();
+  //     }
+
+  //     // Function if promise rejected
+  //     // To catch error before initialize
+  //     // err => alert(err)
+  //   )
+  //   .then(data => {
+  //     renderCountry(data[0]);
+
+  //     // Chaining promise
+
+  //     // chain start
+  //     // calling neighbor of the country
+  //     // const neighbour = data[0].borders[0];
+  //     const neighbour = 'xd';
+  //     if (!neighbour) return;
+
+  //     // Country 2
+  //     return fetch(`https://restcountries.eu/rest/v2/alpha/${neighbour}`);
+  //   })
+  //   .then(response => {
+  //     if (!response.ok)
+  //       throw new Error(`Country not found (${response.status})`);
+  //     response.json();
+  //   })
+  //   .then(data => {
+  //     renderCountry(data, 'neighbour');
+  //   }) //Chain ends
+  //   // To catch error globally
+  //   .catch(err => {
+  //     console.error(`${err}`);
+  //     renderError(`Something went wrong ${err.message}. Try again!`);
+  //   })
+  //   .finally(() => {
+  //     countriesContainer.style.opacity = 1;
+  //   });
+
+  // Long method for fetching============END============================
+
+  // SHORT method for fetching============START============================
+
+  getJSON(
+    `https://restcountries.eu/rest/v2/name/${country}`,
+    'Country not found'
+  )
     .then(data => {
       renderCountry(data[0]);
-
-      // Chaining promise
-
-      // chain start
-      // calling neighbor of the country
+      // const neighbour = 'xd';
       const neighbour = data[0].borders[0];
-      if (!neighbour) return;
-      return fetch(`https://restcountries.eu/rest/v2/alpha/${neighbour}`);
+      if (!neighbour) throw new Error('No neighbour found!');
+      // console.log(data[0]);
+
+      // Country 2
+      return getJSON(`https://restcountries.eu/rest/v2/alpha/${neighbour}`);
     })
-    .then(response => response.json())
-    .then(
-      data => {
-        renderCountry(data, 'neighbour');
-      },
-      noneighbor => console.log('no neighbor')
-    ) //Chain ends
-    // To catch error globally
+
+    .then(data => {
+      renderCountry(data, 'neighbour');
+    })
     .catch(err => {
       console.error(`${err}`);
-      renderError(`Something went wrong ${err.message}. Try again!`);
+      renderError(`Something went wrong ${err.message} LMAO`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
+  // SHORT method for fetching============END============================
+};
+
+const getJSON = function (url, errMsg = 'Something went wrong') {
+  return fetch(url).then(response => {
+    if (!response.ok) throw new Error(`${errMsg} (${response.status})`);
+
+    return response.json();
+  });
+};
+
+// getCountryData('united states of america');
+// getCountryData('philippines');
+getCountryData('algeria');
+
+const whereAmI = function (lat, long) {
+  // fetch(`https://geocode.xyz/${long},${lat}?geoit=json`)
+  fetch(
+    `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}&localityLanguage=en`
+  )
+    .then(response => {
+      // return response.json();
+      // console.log(response.json());
+      return response.json();
+    })
+    .then(data => {
+      // console.log(data.countryName);
+      // getCountryData(data.countryName);
+      // const errorNum = data.status,
+      //   errorDesc = data.description;
+      // if (errorNum == '401') console.log(`Error ${errorNum}, ${errorDesc}`);
+      // console.log(data);
+      return data.countryName;
+    })
+    .then(country => {
+      // if (country == '') throw new Error('No country exist');
+      getCountryData(country);
+      console.log(`You are in ${country}`);
+    })
+    .catch(err => {
+      console.log(`Invalid Coordinate ${err.status}`);
+      renderError(`Invalid Coordinate ${err.status}`);
+    });
+};
+// whereAmI(37.421, -122.08); //USA
+// whereAmI(14.5469551, 121.0604766); //Philippines
+whereAmI(27.8193752, -7.3515912); //Africa , Algeria
+whereAmI(24.822, 55.5); //Dubai
+// whereAmI(undefined, null); //USA
+
+const imaDokuda = function (long, lat) {
+  fetch(`https://geocode.xyz/${long},${lat}?geoit=json`)
+    // fetch(
+    //   `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}&localityLanguage=en`
+    // )
+    .then(response => {
+      // return response.json();
+      // console.log(response.json());
+      // console.log(response);
+      if (!response.ok) throw new Error('Invalid Coordinates');
+      return response.json();
+    })
+    .then(data => {
+      // console.log(data.countryName);
+      // getCountryData(data.countryName);
+      // const errorNum = data.status,
+      //   errorDesc = data.description;
+      // if (errorNum == '401') console.log(`Error ${errorNum}, ${errorDesc}`);
+      if (data.error?.code == '018') throw new Error('Invalid Country');
+      setTimeout(() => {
+        console.log(data);
+      }, 2000);
+
+      // return data.countryName;
+    })
+    // .then(country => {
+    //   // if (country == '') throw new Error('No country exist');
+    //   getCountryData(country);
+    //   console.log(`You are in ${country}`);
+    // })
+    .catch(err => {
+      console.log(`${err}`);
     });
 };
 
-getCountryData('japan');
+imaDokuda(25.2120555, 55.2666567);
+imaDokuda(27.8193752, -7.3515912);
+imaDokuda(`d`, 'lol');
+
+//geocode.xyz IS SHIT, REMOVE THAT
