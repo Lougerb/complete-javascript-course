@@ -161,7 +161,7 @@ const getJSON = function (url, errMsg = 'Something went wrong') {
 
 // getCountryData('united states of america');
 // getCountryData('philippines');
-getCountryData('algeria');
+// getCountryData('algeria');
 
 const whereAmI = function (lat, long) {
   // fetch(`https://geocode.xyz/${long},${lat}?geoit=json`)
@@ -184,8 +184,35 @@ const whereAmI = function (lat, long) {
     })
     .then(country => {
       // if (country == '') throw new Error('No country exist');
-      getCountryData(country);
+      // getCountryData(country);
+
       console.log(`You are in ${country}`);
+      fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+        .then(dataCountry => {
+          // console.log(dataCountry);
+          return dataCountry.json();
+        })
+        .then(newCountry => {
+          const countryData = newCountry[0],
+            currentNeighbor = newCountry[0].borders[0];
+          renderCountry(countryData);
+          if (!currentNeighbor) throw new Error('No Neighbor found');
+          // get countryData then render
+
+          // Neighbor
+          return fetch(
+            `https://restcountries.eu/rest/v2/alpha/${currentNeighbor}`
+          ).then(getNeighborData => {
+            return getNeighborData.json();
+          });
+        })
+        .then(neighbourData => {
+          renderCountry(neighbourData, 'neighbour');
+        })
+        .catch(countryErr => {
+          console.log(countryErr);
+          renderError(countryErr.message);
+        });
     })
     .catch(err => {
       console.log(`Invalid Coordinate ${err.status}`);
@@ -194,47 +221,54 @@ const whereAmI = function (lat, long) {
 };
 // whereAmI(37.421, -122.08); //USA
 // whereAmI(14.5469551, 121.0604766); //Philippines
-whereAmI(27.8193752, -7.3515912); //Africa , Algeria
-whereAmI(24.822, 55.5); //Dubai
+// whereAmI(27.8193752, -7.3515912); //Africa , Algeria
+// whereAmI(24.822, 55.5); //Dubai
 // whereAmI(undefined, null); //USA
+// whereAmI(14.8008788, 121.0289141);
 
-const imaDokuda = function (long, lat) {
-  fetch(`https://geocode.xyz/${long},${lat}?geoit=json`)
-    // fetch(
-    //   `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}&localityLanguage=en`
-    // )
-    .then(response => {
-      // return response.json();
-      // console.log(response.json());
-      // console.log(response);
-      if (!response.ok) throw new Error('Invalid Coordinates');
-      return response.json();
-    })
-    .then(data => {
-      // console.log(data.countryName);
-      // getCountryData(data.countryName);
-      // const errorNum = data.status,
-      //   errorDesc = data.description;
-      // if (errorNum == '401') console.log(`Error ${errorNum}, ${errorDesc}`);
-      if (data.error?.code == '018') throw new Error('Invalid Country');
-      setTimeout(() => {
-        console.log(data);
-      }, 2000);
+// const imaDokuda = function (long, lat) {
+//   fetch(`https://geocode.xyz/${long},${lat}?geoit=json`)
+//     // fetch(
+//     //   `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}&localityLanguage=en`
+//     // )
+//     .then(response => {
+//       // return response.json();
+//       // console.log(response.json());
+//       // console.log(response);
+//       if (!response.ok) throw new Error('Invalid Coordinates');
+//       return response.json();
+//     })
+//     .then(data => {
+//       // console.log(data.countryName);
+//       // getCountryData(data.countryName);
+//       // const errorNum = data.status,
+//       //   errorDesc = data.description;
+//       // if (errorNum == '401') console.log(`Error ${errorNum}, ${errorDesc}`);
+//       if (data.error?.code == '018') throw new Error('Invalid Country');
+//       setTimeout(() => {
+//         console.log(data);
+//       }, 2000);
 
-      // return data.countryName;
-    })
-    // .then(country => {
-    //   // if (country == '') throw new Error('No country exist');
-    //   getCountryData(country);
-    //   console.log(`You are in ${country}`);
-    // })
-    .catch(err => {
-      console.log(`${err}`);
-    });
-};
+//       // return data.countryName;
+//     })
+//     // .then(country => {
+//     //   // if (country == '') throw new Error('No country exist');
+//     //   getCountryData(country);
+//     //   console.log(`You are in ${country}`);
+//     // })
+//     .catch(err => {
+//       console.log(`${err}`);
+//     });
+// };
 
-imaDokuda(25.2120555, 55.2666567);
-imaDokuda(27.8193752, -7.3515912);
-imaDokuda(`d`, 'lol');
+// imaDokuda(25.2120555, 55.2666567);
+// imaDokuda(27.8193752, -7.3515912);
+// imaDokuda(`d`, 'lol');
 
 //geocode.xyz IS SHIT, REMOVE THAT
+
+// Promises
+
+// const lotteryPromise = new Promise(function(resolve, reject){
+
+// })
