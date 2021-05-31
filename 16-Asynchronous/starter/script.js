@@ -269,6 +269,37 @@ const whereAmI = function (lat, long) {
 
 // Promises
 
-// const lotteryPromise = new Promise(function(resolve, reject){
+const lotteryPromise = new Promise(function (resolve_, reject_) {
+  console.log('Lotter draw is happening!');
+  console.log('Countdown in 3');
 
-// })
+  setTimeout(() => {
+    if (Math.random() >= 0.5) {
+      resolve_('You Win!');
+    } else {
+      reject_('You Lose LMAO');
+    }
+  }, 3000);
+});
+// lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+
+const getUserPosition = function () {
+  return new Promise(function (resolvePosition, rejectPosition) {
+    // navigator.geolocation.getCurrentPosition()
+    // This method is already defined
+    // This method will ask user to "Know youe Location"
+    navigator.geolocation.getCurrentPosition(resolvePosition, rejectPosition);
+  });
+};
+
+// Getting user's position
+getUserPosition()
+  .then(pos => {
+    console.log(pos);
+    console.log(pos.coords.latitude);
+    console.log(pos.coords.longitude);
+    const userLat = pos.coords.latitude,
+      userLong = pos.coords.longitude;
+    whereAmI(userLat, userLong);
+  })
+  .catch(posErr => console.error(posErr));
