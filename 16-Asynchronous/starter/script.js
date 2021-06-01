@@ -281,7 +281,8 @@ const lotteryPromise = new Promise(function (resolve_, reject_) {
     }
   }, 3000);
 });
-// lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+
+lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
 
 const getUserPosition = function () {
   return new Promise(function (resolvePosition, rejectPosition) {
@@ -292,14 +293,71 @@ const getUserPosition = function () {
   });
 };
 
-// Getting user's position
-getUserPosition()
-  .then(pos => {
-    console.log(pos);
-    console.log(pos.coords.latitude);
-    console.log(pos.coords.longitude);
-    const userLat = pos.coords.latitude,
-      userLong = pos.coords.longitude;
-    whereAmI(userLat, userLong);
+// // Getting user's position
+// getUserPosition()
+//   .then(pos => {
+//     console.log(pos);
+//     console.log(pos.coords.latitude);
+//     console.log(pos.coords.longitude);
+//     const userLat = pos.coords.latitude,
+//       userLong = pos.coords.longitude;
+//     // call promise to render your location
+//     whereAmI(userLat, userLong);
+//   })
+//   .catch(posErr => console.error(posErr));
+
+const createImage = function (imgNum) {
+  // Element with src attribute
+  const imgElem = document.createElement('img');
+  // Append imgElem by Body element
+  document.body.appendChild(imgElem);
+  // Set attribute of img Element
+  imgElem.setAttribute('src', `img/img-${imgNum}.jpg`);
+
+  // Can also be like this
+  // Which is easy
+  // document.body.insertAdjacentHTML(
+  //   'afterbegin',
+  //   `<img src="img/img-${imgNum}.jpg"></img>`
+  // );
+};
+
+// createImage(1);
+
+const createImage2 = function (imgNum) {
+  // return new Promise(function (resolveImg, rejectImg) {
+  //   resolveImg(`img/img-${imgNum}.jpg"></img>`);
+  //   rejectImg('Image not Found!');
+  // });
+
+  return new Promise(function (resolveImg, rejectImg) {
+    const imgElem2 = document.createElement('img');
+    // Append imgElem by Body element
+    document.body.appendChild(imgElem2);
+    // Set attribute of img Element
+    imgElem2.setAttribute('src', `img/img-${imgNum}.jpg`);
+
+    // rejectImg('Image not Found!');
+  });
+
+  // return `img/img-${imgNum}.jpg"></img>`;
+};
+
+// const imgRotation = new Promise(function (resolveImg, rejectImg) {
+
+//   resolveImg(createImage2());
+//   rejectImg('Image not Found!');
+// });
+
+const rotateImg = function (secs) {
+  return new Promise(function (resolveSec) {
+    setTimeout(resolveSec, secs * 1000);
+  });
+};
+// createImage2(2);
+rotateImg(1)
+  .then(() => {
+    createImage2(1);
+    return rotateImg(2);
   })
-  .catch(posErr => console.error(posErr));
+  .then(() => createImage2(2) );
