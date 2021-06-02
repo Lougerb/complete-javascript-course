@@ -269,20 +269,20 @@ const whereAmI = function (lat, long) {
 
 // Promises
 
-const lotteryPromise = new Promise(function (resolve_, reject_) {
-  console.log('Lotter draw is happening!');
-  console.log('Countdown in 3');
+// const lotteryPromise = new Promise(function (resolve_, reject_) {
+//   console.log('Lotter draw is happening!');
+//   console.log('Countdown in 3');
 
-  setTimeout(() => {
-    if (Math.random() >= 0.5) {
-      resolve_('You Win!');
-    } else {
-      reject_('You Lose LMAO');
-    }
-  }, 3000);
-});
+//   setTimeout(() => {
+//     if (Math.random() >= 0.5) {
+//       resolve_('You Win!');
+//     } else {
+//       reject_('You Lose LMAO');
+//     }
+//   }, 3000);
+// });
 
-lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+// lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
 
 const getUserPosition = function () {
   return new Promise(function (resolvePosition, rejectPosition) {
@@ -349,15 +349,139 @@ const createImage2 = function (imgNum) {
 //   rejectImg('Image not Found!');
 // });
 
-const rotateImg = function (secs) {
-  return new Promise(function (resolveSec) {
-    setTimeout(resolveSec, secs * 1000);
-  });
+// const rotateImg = function (secs) {
+//   return new Promise(function (resolveSec) {
+//     setTimeout(resolveSec, secs * 1000);
+//   });
+// };
+// // createImage2(2);
+// rotateImg(1)
+//   .then(() => {
+//     createImage2(1);
+//     return rotateImg(2);
+//   })
+//   .then(() => createImage2(2) );
+
+// ASYNC
+// Does not need .THEN Method
+
+const checkThisCountry = async function (country) {
+  try {
+    // To fetch respons
+    const responsCountry = await fetch(
+      `https://restcountries.eu/rest/v2/name/${country}`
+    );
+    // Throw error if nothing response
+    if (!responsCountry.ok)
+      throw new Error(`Error: ${responsCountry.status} Country not found !`);
+
+    // To get JSON
+    const dataCountry = await responsCountry.json();
+    // console.log(responsCountry);
+
+    // console.log(responsCountry);
+    renderCountry(dataCountry[0]);
+  } catch (err) {
+    // To render Error to HRML
+    renderError(err.message);
+    console.log(err.message);
+  }
 };
-// createImage2(2);
-rotateImg(1)
-  .then(() => {
-    createImage2(1);
-    return rotateImg(2);
-  })
-  .then(() => createImage2(2) );
+
+// To check where the user
+const dokoIru = async function () {
+  try {
+    // Get location from user using getUserPosition() function
+    const pos = await getUserPosition();
+
+    // Throw Error
+    // NOTE: This doesnt work idk why
+    // BUT I manage to workout on Catch method
+    // if (pos.code == 1)
+    // throw new Error(`Error code ${pos.code}, ${pos.message}`);
+
+    // console.log(pos.coords.latitude);
+    // Deconstrunct the response
+    const { latitude: posLAT, longitude: posLONG } = pos.coords;
+
+    // console.log(posLAT, posLONG);
+
+    // Fetch what country are we
+    // Using Latitued and Longitude from getting position
+    const rescount = await fetch(
+      `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${posLAT}&longitude=${posLONG}&localityLanguage=en`
+    );
+    // Get the JSON from response
+    const resJson = await rescount.json();
+    // console.log(resJson);
+
+    // Deconstruct country name from json
+    const { city, countryName: currentCountry } = resJson;
+
+    // Rebder country using checkThisCountry Function
+    checkThisCountry(currentCountry);
+    // console.log(`You are in ${city}, ${currentCountry}`);
+    return `You are in ${city}, ${currentCountry}`;
+  } catch (err) {
+    // console.log(err);
+    if (err.code == 1) {
+      // console.log(`Error code ${err.code}: ${err.message}`);
+      renderError(`Error code ${err.code}: ${err.message}`);
+    }
+    throw err;
+  }
+};
+
+// checkThisCountry('aylmao');
+// dokoIru()
+
+// Async + Then method
+// dokoIru()
+//   .then(city => console.log(city))
+//   .catch(err => {
+//     // renderError(`Error code ${err.code}: ${err.message}`);
+//     console.log(`Error code ${err.code}: City not found`);
+//     // console.log(err);
+//   })
+//   .finally(() => console.log(`Finished processing Geo`));
+
+// Try Catch Statement
+
+// try {
+//   let y = 1;
+//   const x = 2;
+
+//   // ERROR: X is constant, cant replace
+//   x = 3;
+// } catch (err) {
+//   console.error(err.message);
+// }
+
+// Async + Then method
+// dokoIru()
+//   .then(city => console.log(city))
+//   .catch(err => {
+//     // renderError(`Error code ${err.code}: ${err.message}`);
+//     console.log(`Error code ${err.code}: City not found`);
+//     // console.log(err);
+//   })
+//   .finally(() => console.log(`Finished processing Geo`));
+
+// Async ONLY
+
+// Syntax use here:
+/*(function(){
+  foo
+}());
+*/
+
+(async function () {
+  try {
+    const resp = await dokoIru();
+    console.log(resp);
+  } catch (err) {
+    renderError(`Error code ${err.code}: ${err.message}`);
+    console.log(`Error code ${err.code}: City not found`);
+  }
+  console.log(`Finished processing Geo`);
+})();
