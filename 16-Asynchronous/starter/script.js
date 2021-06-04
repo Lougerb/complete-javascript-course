@@ -470,18 +470,68 @@ const dokoIru = async function () {
 // Async ONLY
 
 // Syntax use here:
+// it's called IIFE
+
 /*(function(){
-  foo
+  do something
 }());
 */
 
-(async function () {
+// (async function () {
+//   try {
+//     const resp = await dokoIru();
+//     console.log(resp);
+//   } catch (err) {
+//     renderError(`Error code ${err.code}: ${err.message}`);
+//     console.log(`Error code ${err.code}: City not found`);
+//   }
+//   console.log(`Finished processing Geo`);
+// })();
+
+const get3Countries = async function (c1, c2, c3) {
   try {
-    const resp = await dokoIru();
-    console.log(resp);
+    // Using this method loads in Series
+    // const [data1] = await getJSON(
+    //   `https://restcountries.eu/rest/v2/name/${c1}`
+    // );
+    // const [data2] = await getJSON(
+    //   `https://restcountries.eu/rest/v2/name/${c2}`
+    // );
+    // const [data3] = await getJSON(
+    //   `https://restcountries.eu/rest/v2/name/${c3}`
+    // );
+    // console.log(data1, data2, data3);
+
+    // This Method use to load all data at the same time
+    // Must be on array
+    const dataALL = await Promise.all([
+      getJSON(`https://restcountries.eu/rest/v2/name/${c1}`),
+      getJSON(`https://restcountries.eu/rest/v2/name/${c2}`),
+      getJSON(`https://restcountries.eu/rest/v2/name/${c3}`),
+    ]);
+
+    console.log(dataALL); //Output: [Array(1), Array(1), Array(1)]
+
+    // To get EACH data easily use .map() method
+    const countryCapital = dataALL.map(d => d[0].capital);
+    console.log(countryCapital);
   } catch (err) {
-    renderError(`Error code ${err.code}: ${err.message}`);
-    console.log(`Error code ${err.code}: City not found`);
+    console.log(err);
   }
-  console.log(`Finished processing Geo`);
+};
+
+// get3Countries('qatar', 'japan', 'malaysia');
+
+// Promise.race
+// if there's multiple await you want to execute without using .map() Method
+// it will only execute who will bring the data first
+
+(async function () {
+  const resp = await Promise.race([
+    getJSON(`https://restcountries.eu/rest/v2/name/japan`),
+    getJSON(`https://restcountries.eu/rest/v2/name/italy`),
+    getJSON(`https://restcountries.eu/rest/v2/name/vietnam`),
+  ]);
+
+  console.log(resp[0]);
 })();
